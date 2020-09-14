@@ -60,9 +60,3 @@ data = 'C:\\Users\\user\\Desktop\\UCI数据集txt格式\\Iris.txt'
 data_del = 'C:\\Users\\user\\Desktop\\UCI数据集txt格式\\Iris_del.csv'
 label = 'C:\\Users\\user\\Desktop\\UCI数据集txt格式\\Iris_label.csv'
 delete(data,data_del,label,0.5)
-
-# data1 = 'C:\\Users\\user\\Desktop\\UCI数据集txt格式\\Wine.txt'
-# data_del1 = 'C:\\Users\\user\\Desktop\\UCI数据集txt格式\\Wine_del.csv'
-# label1 = 'C:\\Users\\user\\Desktop\\UCI数据集txt格式\\Wine_label.csv'
-# delete(data1,data_del1,label1,0.35)
-
