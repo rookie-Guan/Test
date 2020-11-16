@@ -1,6 +1,4 @@
 import numpy as np
-import pandas as pd
-from pandas import Series,DataFrame
 import copy
 
 def delete(filename,del_filename,label_filename,rate ):
@@ -14,7 +12,6 @@ def delete(filename,del_filename,label_filename,rate ):
         M = data.shape[0]  # 输出data行数
         N = data.shape[1]  # 输出data列数
         data_del = copy.deepcopy(data)
-
 
         range_set = np.arange(M * N)
         rand_num = np.random.choice(range_set, int(np.round(M * N * rate)), replace=False)
@@ -31,9 +28,6 @@ def delete(filename,del_filename,label_filename,rate ):
             column = i % N
             label[row, column] = 1
 
-        # print(label.sum())
-        # print(label)
-
         for i in range(M):
             if N < 5:
                 if label[i].sum() == N:
@@ -46,17 +40,20 @@ def delete(filename,del_filename,label_filename,rate ):
             for j in range(N):
                 if label[i, j] == 1:
                     data_del[i, j] = np.nan
-            print('循环次数为：' + str(loop_count))
-    # print(label.sum())
-    # print(label)
-    # print(data_del)
-    print('样本个数:' + str(M) + ',属性个数：' + str(N))
-    print('循环次数为：' + str(loop_count))
+
+    print('数据集: ' + str(M) + ' X ' + str(N))
+    print("缺失率:", rate, "\n缺失值个数:", int(label.sum()))
+    print('循环次数: ' + str(loop_count))
     np.savetxt(del_filename, data_del, fmt='%0.4f', delimiter=',')
     np.savetxt(label_filename, label, fmt='%0.4f', delimiter=',')
 
+    return data_del,label
 
-data = 'C:\\Users\\user\\Desktop\\UCI数据集txt格式\\Iris.txt'
+data_file = 'C:\\Users\\user\\Desktop\\UCI数据集txt格式\\Iris.csv'
 data_del = 'C:\\Users\\user\\Desktop\\UCI数据集txt格式\\Iris_del.csv'
-label = 'C:\\Users\\user\\Desktop\\UCI数据集txt格式\\Iris_label.csv'
-delete(data,data_del,label,0.5)
+data_label = 'C:\\Users\\user\\Desktop\\UCI数据集txt格式\\Iris_label.csv'
+data_meanpre = 'C:\\Users\\user\\Desktop\\UCI数据集txt格式\\Iris_meanpre.csv'
+data_filled = 'C:\\Users\\user\\Desktop\\UCI数据集txt格式\\Iris_filled.csv'
+
+delete(data_file,data_del,data_label,0.1)
+
